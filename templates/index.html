@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LPD8806 Control Server :: Tel Aviv Makers</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="/">Home</a></li>
+        </ul>
+        <h3 class="text-muted">LPD8806 Control Server</h3>
+      </div>
+
+      <div class="row marketing">
+        <form class="form-inline" role="form" action="/strip" method="POST">
+          <div class="form-group">
+            <input type="hidden" name="func" value="single-color">
+            <label class="sr-only" for="input-color-red">Color</label>
+            <input type="number" class="form-control" name="red" id="input-color-red" placeholder="Red 0-127">
+            <label class="sr-only" for="input-color-green">Color</label>
+            <input type="number" class="form-control" name="green" id="input-color-green" placeholder="Green 0-127">
+            <label class="sr-only" for="input-color-blue">Color</label>
+            <input type="number" class="form-control" name="blue" id="input-color-blue" placeholder="Blue 0-127">
+          </div>
+          <button type="submit" class="btn btn-primary">Set single color</button>
+        </form>
+
+        <hr>
+
+      </div>
+
+      <div class="footer">
+        <p><span style="-moz-transform: scaleX(-1); -o-transform: scaleX(-1); -webkit-transform: scaleX(-1); transform: scaleX(-1); display: inline-block;">©</span> Tel Aviv Makers Intl. 2014</p>
+      </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+  </body>
+</html>
