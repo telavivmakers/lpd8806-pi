@@ -1,8 +1,20 @@
 import os
-
 import tornado.ioloop
 import tornado.web
 
+from raspledstrip.ledstrip import *
+
+try:
+    led = LEDStrip(160, True)
+    status = 'ok'
+except:
+    from mock import Mock
+    led = Mock()
+    status = 'error'
+
+class Noop(object):
+    def __call__(self, *args, **kwargs):
+        pass
 
 class StripHandler(tornado.web.RequestHandler):
     def post(self):
@@ -11,15 +23,18 @@ class StripHandler(tornado.web.RequestHandler):
             try:
                 r,g,b = [int(self.get_argument(x)) for x in ('red', 'green', 'blue')]
                 if 0 <= r < 128 and 0 <= g < 128 and 0 <= b < 128:
-                    print r, g, b
+                    led.fillRGB(r,g,b)
+                    led.update()
             except:
                 pass
+        if func == 'turn-off':
+            led.all_off()
         self.redirect('/', permanent=False)
 
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.render('index.html')
+        self.render('index.html', status=status)
 
 settings = {
     'debug': True,

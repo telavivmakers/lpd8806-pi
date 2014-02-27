@@ -17,6 +17,13 @@
         <h3 class="text-muted">LPD8806 Control Server</h3>
       </div>
 
+      {% if status != 'ok' %}
+      <div class="alert alert-danger alert-dismissable">
+        <strong>ERROR</strong>: LED strip error not synchronized, stuff won't work.
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      </div>
+      {% end %}
+
       <div class="row marketing">
         <form class="form-inline" role="form" action="/strip" method="POST">
           <div class="form-group">
@@ -32,6 +39,18 @@
         </form>
 
         <hr>
+
+        <form class="form-inline" role="form" action="/strip" method="POST">
+          <input type="hidden" name="func" value="rainbow-cycle">
+          <button type="submit" class="btn btn-primary">Rainbow cycle</button>
+        </form>
+
+        <hr>
+
+        <form class="form-inline" role="form" action="/strip" method="POST">
+          <input type="hidden" name="func" value="turn-off">
+          <button type="submit" class="btn btn-primary">Turn off</button>
+        </form>
 
       </div>
 
